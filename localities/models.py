@@ -10,6 +10,10 @@ class City(models.Model):
     def __str__(self):
         return self.name
 
+    class Meta:
+        verbose_name = "City"
+        verbose_name_plural = "Cities"
+
 
 class Locality(models.Model):
 
@@ -21,6 +25,10 @@ class Locality(models.Model):
     def __str__(self):
         return "{} {}".format(self.name, self.pincode)
 
+    class Meta:
+        verbose_name = "Locality"
+        verbose_name_plural = "Localities"
+
 
 class Area(models.Model):
 
@@ -30,3 +38,4 @@ class Area(models.Model):
 
     def __str__(self):
         return self.name
+
