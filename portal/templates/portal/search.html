@@ -7,7 +7,7 @@
     <section class="content">
         <div class="container-fluid main_container">
             <div class="block-header">
-                <h2>showing results for <b>"{{ search_query }}"</b></h2>
+                <h2>showing <b>{{ masajid.count }}</b> results for <b>"{{ search_query }}"</b></h2>
                 <a href="{% url "portal:home" %}"><u>Go Back</u></a>
             </div>
 
@@ -26,13 +26,13 @@
             <br>
             <div class="clearfix"></div>
             <!-- Basic Example -->
-            <div class="row clearfix" id="searchText">
+            <div class="row clearfix">
                 {% for masjid in masajid %}
                     <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                         <div class="card">
-                            <div class="header bg-cyan">
+                            <div class="header randomColor">
                                 <h2>
-                                    {{ masjid.name }} <small>{{ masjid.address }}</small>
+                                    {{ masjid.name }} <small style="height: 20px">{{ masjid.get_address_display }}</small>
                                 </h2>
                             </div>
                             <div class="body">
