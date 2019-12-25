@@ -31,6 +31,8 @@
 
     <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
     <link href="{% static "css/themes/all-themes.css" %}" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
 </head>
 
 <body class="theme-green">
@@ -119,6 +121,37 @@
 
     <!-- Demo Js -->
     <script src="{% static "js/demo.js" %}"></script>
+
+    <script>
+        $(".amt-nav-itm").each(function () {
+            let current_url = window.location.pathname;
+            if ($(this).children("a").attr("href") == current_url){
+                $(this).addClass("active");
+            }
+        });
+
+        $(".randomColor").each(function (i) {
+            i += 1;
+            if (i%6==1){
+                $(this).addClass("bg-teal");
+            }
+            else if (i%6==2){
+                $(this).addClass("bg-indigo");
+            }
+            else if (i%6==3){
+                $(this).addClass("bg-green");
+            }
+            else if (i%6==4){
+                $(this).addClass("bg-blue");
+            }
+            else if (i%6==5){
+                $(this).addClass("bg-pink");
+            }
+            else if (i%6==0){
+                $(this).addClass("bg-blue-grey");
+            }
+        })
+    </script>
 </body>
 
 </html>

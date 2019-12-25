@@ -21,6 +21,9 @@ class Masjid(models.Model):
     def __str__(self):
         return self.name
 
+    def get_address_display(self):
+        return "{}".format(self.address)
+
     class Meta:
         verbose_name = "Masjid"
         verbose_name_plural = "Masajid"

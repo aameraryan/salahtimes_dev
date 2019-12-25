@@ -33,7 +33,6 @@ class Locality(models.Model):
 class Area(models.Model):
 
     locality = models.ForeignKey(Locality, on_delete=models.CASCADE)
-
     name = models.CharField(max_length=128)
 
     def __str__(self):

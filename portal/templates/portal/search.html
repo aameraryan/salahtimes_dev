@@ -1,5 +1,5 @@
 {% extends "portal/base.html" %}
-{% block full_title %}Salah Times{% endblock %}
+{% block full_title %}{{ raw_search_query }} - search Salah Times{% endblock %}
 
 {% block content %}
 
@@ -7,7 +7,8 @@
     <section class="content">
         <div class="container-fluid main_container">
             <div class="block-header">
-                <h2><b>All Masajid</b></h2>
+                <h2>showing results for <b>"{{ search_query }}"</b></h2>
+                <a href="{% url "portal:home" %}"><u>Go Back</u></a>
             </div>
 
             <div style="background-color: white;padding: 15px 20px 5px 20px;">
@@ -25,13 +26,13 @@
             <br>
             <div class="clearfix"></div>
             <!-- Basic Example -->
-            <div class="row clearfix">
+            <div class="row clearfix" id="searchText">
                 {% for masjid in masajid %}
                     <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                         <div class="card">
-                            <div class="header randomColor">
+                            <div class="header bg-cyan">
                                 <h2>
-                                    {{ masjid.name }} <small style="height: 20px">{{ masjid.get_address_display }}</small>
+                                    {{ masjid.name }} <small>{{ masjid.address }}</small>
                                 </h2>
                             </div>
                             <div class="body">
