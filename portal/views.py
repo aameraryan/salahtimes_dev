@@ -16,7 +16,6 @@ class HomeView(TemplateView):
         masajid = Masjid.objects.all().order_by("name")
         context = super().get_context_data()
         context['masajid'] = masajid
-        messages.success(self.request, "thanks for your suggesstion, we will look on it.")
         return context
 
 
