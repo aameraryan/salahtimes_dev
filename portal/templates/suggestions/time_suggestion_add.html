@@ -17,8 +17,6 @@
             <div class="row clearfix container-fluid">
                 <form method="post">
                     {% csrf_token %}
-                    {{ form.fajar|as_crispy_field }}
-
                     {{ form|crispy }}
                     <button type="submit" class="btn bg-green">Send</button>
                 </form>
