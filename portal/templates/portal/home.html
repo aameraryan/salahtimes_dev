@@ -1,56 +1,126 @@
 {% extends "portal/base.html" %}
 {% block full_title %}Salah Times{% endblock %}
-
 {% block content %}
-
-
     <section class="content">
-        <div class="container-fluid main_container">
-            <div class="block-header">
-                <h2><b>All Masajid</b></h2>
-            </div>
 
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }} alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        <div class="container-fluidl">
+            <div class="block-header" style="margin-left: 0">
+                <h2><b>Showing <span id="masajid_count">{{ masajid.count }}</span> Masajid</b></h2>
+            </div>
             <div style="background-color: white;padding: 15px 20px 5px 20px;">
+{#                <div class="input-group">#}
+{#                    <div class="form-line">#}
+{#                        <form name="searchForm" method="get" action="{% url "portal:search" %}">#}
+{#                            <input type="text" name="query" class="form-control" placeholder="search by name or address">#}
+{#                        </form>#}
+{#                    </div>#}
+{#                    <span class="input-group-addon">#}
+{#                        <a onclick="searchForm.submit();" href="#"><i class="material-icons">send</i></a>#}
+{#                    </span>#}
+{#                </div>#}
                 <div class="input-group">
-                    <div class="form-line">
-                        <form name="searchForm" method="get" action="{% url "portal:search" %}">
-                            <input type="text" name="query" class="form-control" placeholder="search by name or address">
-                        </form>
-                    </div>
                     <span class="input-group-addon">
-                        <a onclick="searchForm.submit();" href="#"><i class="material-icons">send</i></a>
+                        <i class="material-icons amt_icon">search</i>
                     </span>
+                    <div class="form-line">
+                        <input type="text" id="query" class="form-control" placeholder="search by name or address">
+                    </div>
                 </div>
             </div>
             <br>
+            <a href="{% url "suggestions:new_suggestion_add" %}"><u>Suggest New Masjid +</u></a>
+            <br><br>
             <div class="clearfix"></div>
             <!-- Basic Example -->
-            <div class="row clearfix">
-                {% for masjid in masajid %}
-                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                        <div class="card">
-                            <div class="header randomColor">
-                                <h2>
-                                    {{ masjid.name }} <small style="height: 20px">{{ masjid.get_address_display }}</small>
-                                </h2>
-                            </div>
-                            <div class="body">
-                                <ul class="list-group">
-                                    <li class="list-group-item">Fajar<span class="badge bg-pink">{{ masjid.fajar|date:"g:i A"  }}</span></li>
-                                    <li class="list-group-item">Zuhar<span class="badge bg-cyan">{{ masjid.zuhar|date:"g:i A"  }}</span></li>
-                                    <li class="list-group-item">Asar<span class="badge bg-teal">{{ masjid.asar|date:"g:i A" }}</span></li>
-                                    <li class="list-group-item">Maghrib<span class="badge bg-orange">{{ masjid.maghrib|date:"g:i A"  }}</span></li>
-                                    <li class="list-group-item">Isha<span class="badge bg-purple">{{ masjid.isha|date:"g:i A"  }}</span></li>
-                                    <li class="list-group-item">Juma<span class="badge bg-teal">{{ masjid.juma|date:"g:i A"  }}</span></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                {% endfor %}
+            <div class="row clearfix container-fluid">
+                <div class="panel-group" id="accordion_1" role="tablist" aria-multiselectable="true">
+                    {% for masjid in masajid %}
+
+                        <div class="panel masjid randomColor">
+                                    <span class="masjid_text" style="display: none">
+                                        {{ masjid.name }} {{ masjid.get_address_display }}
+                                    </span>
+                                            <div class="panel-heading" role="tab" id="masjidHeading_{{ forloop.counter }}">
+                                                <h4 class="panel-title ">
+                                                    <a role="button" data-toggle="collapse" data-parent="#accordion_1" href="#masjid_{{ forloop.counter }}" aria-expanded="false" aria-controls="masjid_{{ forloop.counter }}">
+                                                    {{ masjid.name }}<br><small style="height: 20px;color: whitesmoke">{{ masjid.get_address_display }}</small>
+                                                    </a>
+                                                </h4>
+
+                                            </div>
+                                            <div style="padding: 10px!important;" id="masjid_{{ forloop.counter }}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="masjidHeading_{{ forloop.counter }}">
+                                                <table class="table timing_table">
+                                                        <tr>
+                                                            <th>Fajar</th>
+                                                            <td>{{ masjid.fajar|date:"g:i A" }}</td>
+                                                            <th>Zuhar</th>
+                                                            <td>{{ masjid.zuhar|date:"g:i A" }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Asar</th>
+                                                            <td>{{ masjid.asar|date:"g:i A" }}</td>
+                                                            <th>Maghrib</th>
+                                                            <td>{{ masjid.maghrib|date:"g:i A" }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Isha</th>
+                                                            <td>{{ masjid.isha|date:"g:i A" }}</td>
+                                                            <th>Juma</th>
+                                                            <td>{{ masjid.juma|date:"g:i A" }}</td>
+                                                        </tr>
+                                                    </table>
+                                                <br>
+                                                <span>Times has changed ?
+                                                    <a href="{% url "suggestions:time_suggestion_add" %}?msid={{ masjid.id }}"><u>Suggest new times</u></a>
+                                                </span>
+
+                                            </div>
+                                        </div>
+
+                    {% endfor %}
+                </div>
+
+                <div id="not_found_div" class="container" style="display: none">
+                    <h4 style="color: grey">Cant find masjid for query "<span id="search_query"></span>"
+                        <a href="{% url "suggestions:new_suggestion_add" %}"><u>Suggest to add it</u></a>
+                    </h4>
+                </div>
             </div>
             <!-- #END# Basic Example -->
         </div>
     </section>
-
-
+{% endblock %}
+{% block custom_script %}
+    <script>
+        $("#query").on("keyup", function () {
+            let query_text = $(this).val().toLowerCase();
+            let masajid = 0;
+            $(".masjid").each(function () {
+                if ($(this).children(".masjid_text").text().toLowerCase().includes(query_text)){
+                    $(this).show();
+                    masajid += 1;
+                }
+                else{
+                    $(this).hide();
+                }
+            });
+            $("#masajid_count").text(masajid);
+            if (masajid < 1){
+                $("#not_found_div").show();
+                $("#search_query").text(query_text);
+            }
+            else{
+                $("#not_found_div").hide();
+            }
+        });
+    </script>
 {% endblock %}

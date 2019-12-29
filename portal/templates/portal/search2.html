@@ -1,0 +1,57 @@
+{% extends "portal/base.html" %}
+{% block full_title %}{{ raw_search_query }} - search Salah Times{% endblock %}
+
+{% block content %}
+
+
+    <section class="content">
+        <div class="container-fluid main_container">
+            <div class="block-header">
+                <h2>showing <b>{{ masajid.count }}</b> results for <b>"{{ search_query }}"</b></h2>
+                <a href="{% url "portal:home" %}"><u>Go Back</u></a>
+            </div>
+
+            <div style="background-color: white;padding: 15px 20px 5px 20px;">
+                <div class="input-group">
+                    <div class="form-line">
+                        <form name="searchForm" method="get" action="{% url "portal:search" %}">
+                            <input type="text" name="query" class="form-control" placeholder="search by name or address">
+                        </form>
+                    </div>
+                    <span class="input-group-addon">
+                        <a onclick="searchForm.submit();" href="#"><i class="material-icons">send</i></a>
+                    </span>
+                </div>
+            </div>
+            <br>
+            <div class="clearfix"></div>
+            <!-- Basic Example -->
+            <div class="row clearfix">
+                {% for masjid in masajid %}
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                        <div class="card">
+                            <div class="header randomColor">
+                                <h2>
+                                    {{ masjid.name }} <small style="height: 20px">{{ masjid.get_address_display }}</small>
+                                </h2>
+                            </div>
+                            <div class="body">
+                                <ul class="list-group">
+                                    <li class="list-group-item">Fajar<span class="badge bg-pink">{{ masjid.fajar|date:"g:i A"  }}</span></li>
+                                    <li class="list-group-item">Zuhar<span class="badge bg-cyan">{{ masjid.zuhar|date:"g:i A"  }}</span></li>
+                                    <li class="list-group-item">Asar<span class="badge bg-teal">{{ masjid.asar|date:"g:i A" }}</span></li>
+                                    <li class="list-group-item">Maghrib<span class="badge bg-orange">{{ masjid.maghrib|date:"g:i A"  }}</span></li>
+                                    <li class="list-group-item">Isha<span class="badge bg-purple">{{ masjid.isha|date:"g:i A"  }}</span></li>
+                                    <li class="list-group-item">Juma<span class="badge bg-teal">{{ masjid.juma|date:"g:i A"  }}</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <!-- #END# Basic Example -->
+        </div>
+    </section>
+
+
+{% endblock %}

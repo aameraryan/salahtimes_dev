@@ -25,7 +25,7 @@ SECRET_KEY = '^=w(sre0bol)ygy-f64b6c%!^)!6(yxv184s4#gb6#5n*kz57^'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*", ]
 
 
 # Application definition
@@ -42,7 +42,10 @@ INSTALLED_APPS = [
     # 'accounts',
     'localities',
     'masjids',
+    'suggestions',
 
+    'crispy_forms',
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [
@@ -129,5 +132,6 @@ STATIC_URL = '/static/'
 
 # AUTH_USER_MODEL = "accounts.User"
 
-
 SITE_NAME = "Salah Times"
+
+CRISPY_TEMPLATE_PACK = "bootstrap4"

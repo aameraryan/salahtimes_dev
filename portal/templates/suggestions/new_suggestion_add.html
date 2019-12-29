@@ -1,0 +1,36 @@
+{% extends "portal/base.html" %}
+{% load crispy_forms_tags %}
+{% load widget_tweaks %}
+
+{% block title %}Suggest New Masjid{% endblock %}
+
+{% block content %}
+
+
+    <section class="content">
+        <div>
+            <div class="block-header">
+                <h2><b>Suggest New Masjid</b></h2>
+            </div>
+            <div class="clearfix"></div>
+
+            <div class="row clearfix container-fluid">
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form.fajar|as_crispy_field }}
+
+                    {{ form|crispy }}
+                    <button type="submit" class="btn bg-green">Send</button>
+                </form>
+            </div>
+
+
+        </div>
+    </section>
+
+
+{% endblock %}
+
+{% block custom_script %}
+
+{% endblock %}

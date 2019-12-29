@@ -1,4 +1,15 @@
-﻿/* Navbar ====================================== */
+﻿.timing_table tbody tr td, .table tbody tr th{
+  padding: 5px 0 5px 0!important;
+  border-bottom: 0!important;
+}
+.amt_icon{
+  font-weight: bold;
+  font-size: 24px!important;
+}
+
+
+
+/* Navbar ====================================== */
 @import url(materialize.css);
 .navbar {
   font-family: "Roboto", sans-serif;

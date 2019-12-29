@@ -1,0 +1,50 @@
+{% extends "portal/base.html" %}
+{% load crispy_forms_tags %}
+{% load widget_tweaks %}
+
+{% block title %}Suggest New Times{% endblock %}
+
+{% block content %}
+
+
+    <section class="content">
+        <div>
+            <div class="block-header">
+                <h2><b>Suggest New Times</b></h2>
+            </div>
+            <div class="clearfix"></div>
+
+            <div class="row clearfix container-fluid">
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form.fajar|as_crispy_field }}
+
+                    {{ form|crispy }}
+                    <button type="submit" class="btn bg-green">Send</button>
+                </form>
+            </div>
+
+
+        </div>
+    </section>
+
+
+{% endblock %}
+
+{% block custom_script %}
+
+    <script>
+        $(function () {
+            let url = new URL(window.location.href);
+            let masjid_id = url.searchParams.get("msid");
+            if (masjid_id){
+                $("#id_masjid").find("option").each(function () {
+                    if ($(this).val() === masjid_id){
+                        $("#id_masjid").val(masjid_id);
+                    }
+                })
+            }
+        })
+    </script>
+
+{% endblock %}
