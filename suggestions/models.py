@@ -9,22 +9,22 @@ class NewSuggestion(models.Model):
 
     area = models.ForeignKey(Area, on_delete=models.PROTECT)
 
-    name = models.CharField(max_length=256)
+    name = models.CharField(verbose_name="Masjid Name", max_length=256)
     address = models.TextField(blank=True)
 
-    fajar = models.TimeField(blank=True)
-    zuhar = models.TimeField(blank=True)
-    asar = models.TimeField(blank=True)
-    maghrib = models.TimeField(blank=True)
-    isha = models.TimeField(blank=True)
-    juma = models.TimeField(blank=True)
+    fajar = models.TimeField(blank=True, null=True)
+    zuhar = models.TimeField(blank=True, null=True)
+    asar = models.TimeField(blank=True, null=True)
+    maghrib = models.TimeField(blank=True, null=True)
+    isha = models.TimeField(blank=True, null=True)
+    juma = models.TimeField(blank=True, null=True)
 
     staff_note = models.TextField(blank=True)
 
     suggested_on = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.name
+        return self.name or self.user_name
 
 
 class TimeSuggestion(models.Model):
@@ -34,12 +34,12 @@ class TimeSuggestion(models.Model):
 
     masjid = models.ForeignKey("masjids.Masjid", on_delete=models.CASCADE)
 
-    fajar = models.TimeField(blank=True)
-    zuhar = models.TimeField(blank=True)
-    asar = models.TimeField(blank=True)
-    maghrib = models.TimeField(blank=True)
-    isha = models.TimeField(blank=True)
-    juma = models.TimeField(blank=True)
+    fajar = models.TimeField(blank=True, null=True)
+    zuhar = models.TimeField(blank=True, null=True)
+    asar = models.TimeField(blank=True, null=True)
+    maghrib = models.TimeField(blank=True, null=True)
+    isha = models.TimeField(blank=True, null=True)
+    juma = models.TimeField(blank=True, null=True)
 
     staff_note = models.TextField(blank=True)
 

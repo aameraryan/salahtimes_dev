@@ -6,7 +6,7 @@ class NewSuggestionAddForm(forms.ModelForm):
 
     class Meta:
         model = NewSuggestion
-        fields = ("user_name", "user_phone", "area", "address", "fajar", "zuhar", "asar", "maghrib", "isha", "juma")
+        fields = ("user_name", "user_phone", "name", "area", "address", "fajar", "zuhar", "asar", "maghrib", "isha", "juma")
         labels = {
             "user_name": "your name",
             "user_phone": "your phone"

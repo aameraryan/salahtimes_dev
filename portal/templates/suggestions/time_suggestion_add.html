@@ -10,21 +10,33 @@
     <section class="content">
         <div>
             <div class="block-header">
-                <h2><b>Suggest New Times</b></h2>
+                <h2 style="color: green!important;font-size: 15px"><i class="material-icons" style="font-size: 15px">done_outline</i> <b>SUGGEST NEW TIMINGS FOR "{{ masjid.name|upper }}"</b></h2>
             </div>
             <div class="clearfix"></div>
 
             <div class="row clearfix container-fluid">
+                <div class="text-info" style="vertical-align: center">
+                    <h5 style="font-weight: 400">Please enter Namaz times only that you know. leave others blank.</h5>
+                </div>
                 <form method="post">
                     {% csrf_token %}
-                    {{ form|crispy }}
+                    {{ form.user_name|attr:"placeholder:  Enter Your Name (optional)"|as_crispy_field }}
+                    {{ form.user_phone|attr:"placeholder:  Enter Your Phone (optional)"|as_crispy_field }}
+                    {{ form.masjid|as_crispy_field }}
+                    {{ form.fajar|attr:"placeholder:  05:00"|as_crispy_field }}
+                    {{ form.zuhar|attr:"placeholder:  13:00"|as_crispy_field }}
+                    {{ form.asar|attr:"placeholder:  17:00"|as_crispy_field }}
+                    {{ form.maghrib|attr:"placeholder:  19:00"|as_crispy_field }}
+                    {{ form.isha|attr:"placeholder:  21:00"|as_crispy_field }}
+                    {{ form.juma|attr:"placeholder:  14:00"|as_crispy_field }}
                     <button type="submit" class="btn bg-green">Send</button>
                 </form>
             </div>
 
-
+        <br><br><br>
         </div>
     </section>
+
 
 
 {% endblock %}
