@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '^=w(sre0bol)ygy-f64b6c%!^)!6(yxv184s4#gb6#5n*kz57^'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ["*", ]
 
@@ -82,12 +82,12 @@ WSGI_APPLICATION = 'salahtimes.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
+}
 #
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
@@ -95,39 +95,39 @@ WSGI_APPLICATION = 'salahtimes.wsgi.application'
 # Install PyMySQL as mysqlclient/MySQLdb to use Django's mysqlclient adapter
 # See https://docs.djangoproject.com/en/2.1/ref/databases/#mysql-db-api-drivers
 # for more information
-import pymysql  # noqa: 402
-pymysql.install_as_MySQLdb()
-
-# [START db_setup]
-if os.getenv('GAE_APPLICATION', None):
-    # Running on production App Engine, so connect to Google Cloud SQL using
-    # the unix socket at /cloudsql/<your-cloudsql-connection string>
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.mysql',
-            'HOST': '/cloudsql/amtise:asia-south1:salahtimes',
-            'USER': 'aamer',
-            'PASSWORD': 'Aamer@Salahtimes#',
-            'NAME': 'salahtimes_db',
-        }
-    }
-else:
-    # Running locally so connect to either a local MySQL instance or connect to
-    # Cloud SQL via the proxy. To start the proxy via command line:
-    #
-    #     $ cloud_sql_proxy -instances=[INSTANCE_CONNECTION_NAME]=tcp:3306
-    #
-    # See https://cloud.google.com/sql/docs/mysql-connect-proxy
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.mysql',
-            'HOST': '127.0.0.1',
-            'PORT': '3306',
-            'NAME': 'salahtimes_db',
-            'USER': 'aamer',
-            'PASSWORD': 'Aamer@Salahtimes#',
-        }
-    }
+# import pymysql  # noqa: 402
+# pymysql.install_as_MySQLdb()
+#
+# # [START db_setup]
+# if os.getenv('GAE_APPLICATION', None):
+#     # Running on production App Engine, so connect to Google Cloud SQL using
+#     # the unix socket at /cloudsql/<your-cloudsql-connection string>
+#     DATABASES = {
+#         'default': {
+#             'ENGINE': 'django.db.backends.mysql',
+#             'HOST': '/cloudsql/amtise:asia-south1:salahtimes',
+#             'USER': 'aamer',
+#             'PASSWORD': 'Aamer@Salahtimes#',
+#             'NAME': 'salahtimes_db',
+#         }
+#     }
+# else:
+#     # Running locally so connect to either a local MySQL instance or connect to
+#     # Cloud SQL via the proxy. To start the proxy via command line:
+#     #
+#     #     $ cloud_sql_proxy -instances=[INSTANCE_CONNECTION_NAME]=tcp:3306
+#     #
+#     # See https://cloud.google.com/sql/docs/mysql-connect-proxy
+#     DATABASES = {
+#         'default': {
+#             'ENGINE': 'django.db.backends.mysql',
+#             'HOST': '127.0.0.1',
+#             'PORT': '3306',
+#             'NAME': 'salahtimes_db',
+#             'USER': 'aamer',
+#             'PASSWORD': 'Aamer@Salahtimes#',
+#         }
+#     }
 # [END db_setup]
 
 
@@ -169,6 +169,7 @@ USE_TZ = False
 STATIC_URL = '/static/'
 STATIC_ROOT = 'static'
 
+
 #   CUSTOM SETTINGS
 
 # AUTH_USER_MODEL = "accounts.User"
@@ -177,4 +178,4 @@ SITE_NAME = "Salah Times"
 
 CRISPY_TEMPLATE_PACK = "bootstrap4"
 
-SECURE_SSL_REDIRECT = True
+# SECURE_SSL_REDIRECT = True

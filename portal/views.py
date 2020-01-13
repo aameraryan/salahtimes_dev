@@ -34,5 +34,5 @@ def search(request):
     return redirect("portal:home")
 
 
-def localities(request):
-    return render(request, "portal/localities.html", {'cities': City.objects.all()})
+def areas(request):
+    return render(request, "portal/areas.html", {'cities': City.objects.all()})

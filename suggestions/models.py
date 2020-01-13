@@ -29,9 +29,6 @@ class NewSuggestion(models.Model):
 
 class TimeSuggestion(models.Model):
 
-    user_name = models.CharField(max_length=64, blank=True)
-    user_phone = models.CharField(max_length=13, blank=True)
-
     masjid = models.ForeignKey("masjids.Masjid", on_delete=models.CASCADE)
 
     fajar = models.TimeField(blank=True, null=True)

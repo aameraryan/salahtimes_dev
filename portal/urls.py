@@ -7,6 +7,6 @@ urlpatterns = [
 
     url(r'^$', views.HomeView.as_view(), name="home"),
     url(r'^search/$', views.search, name="search"),
-    url(r'^localities/$', views.localities, name="localities"),
+    url(r'^areas/$', views.areas, name="areas"),
 
 ]

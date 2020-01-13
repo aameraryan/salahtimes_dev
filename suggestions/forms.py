@@ -17,7 +17,7 @@ class TimeSuggestionAddForm(forms.ModelForm):
 
     class Meta:
         model = TimeSuggestion
-        fields = ("user_name", "user_phone", "masjid", "fajar", "zuhar", "asar", "maghrib", "isha", "juma")
+        fields = ("masjid", "fajar", "zuhar", "asar", "maghrib", "isha", "juma")
         labels = {
             "user_name": "your name",
             "user_phone": "your phone"

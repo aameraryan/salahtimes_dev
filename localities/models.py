@@ -15,7 +15,7 @@ class City(models.Model):
         verbose_name_plural = "Cities"
 
 
-class Locality(models.Model):
+class Area(models.Model):
 
     city = models.ForeignKey(City, on_delete=models.CASCADE)
 
@@ -26,15 +26,7 @@ class Locality(models.Model):
         return "{} {}".format(self.name, self.pincode)
 
     class Meta:
-        verbose_name = "Locality"
-        verbose_name_plural = "Localities"
+        verbose_name = "Area"
+        verbose_name_plural = "Areas"
 
-
-class Area(models.Model):
-
-    locality = models.ForeignKey(Locality, on_delete=models.CASCADE)
-    name = models.CharField(max_length=128)
-
-    def __str__(self):
-        return self.name
 

@@ -20,8 +20,6 @@
                 </div>
                 <form method="post">
                     {% csrf_token %}
-                    {{ form.user_name|attr:"placeholder:  Enter Your Name (optional)"|as_crispy_field }}
-                    {{ form.user_phone|attr:"placeholder:  Enter Your Phone (optional)"|as_crispy_field }}
                     {{ form.masjid|as_crispy_field }}
                     {{ form.fajar|attr:"placeholder:  05:00"|as_crispy_field }}
                     {{ form.zuhar|attr:"placeholder:  13:00"|as_crispy_field }}
