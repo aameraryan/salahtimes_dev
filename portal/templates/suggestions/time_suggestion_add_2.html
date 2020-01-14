@@ -1,0 +1,58 @@
+{% extends "portal/base.html" %}
+{% load crispy_forms_tags %}
+{% load widget_tweaks %}
+
+{% block title %}Suggest New Times{% endblock %}
+
+{% block content %}
+
+
+    <section class="content">
+        <div>
+            <div class="block-header">
+                <h2 style="color: green!important;font-size: 15px"><i class="material-icons" style="font-size: 15px">done_outline</i> <b>SUGGEST NEW TIMINGS FOR "{{ masjid.name|upper }}"</b></h2>
+            </div>
+            <div class="clearfix"></div>
+
+            <div class="row clearfix container-fluid">
+                <div class="text-info" style="vertical-align: center">
+                    <h5 style="font-weight: 400">Please enter Namaz times only that you know. leave others blank.</h5>
+                </div>
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form.masjid|as_crispy_field }}
+                    {{ form.fajar|attr:"placeholder:  05:00"|as_crispy_field }}
+                    {{ form.zuhar|attr:"placeholder:  13:00"|as_crispy_field }}
+                    {{ form.asar|attr:"placeholder:  17:00"|as_crispy_field }}
+                    {{ form.maghrib|attr:"placeholder:  19:00"|as_crispy_field }}
+                    {{ form.isha|attr:"placeholder:  21:00"|as_crispy_field }}
+                    {{ form.juma|attr:"placeholder:  14:00"|as_crispy_field }}
+                    <button type="submit" class="btn bg-green">Send</button>
+                </form>
+            </div>
+
+        <br><br><br>
+        </div>
+    </section>
+
+
+
+{% endblock %}
+
+{% block custom_script %}
+
+    <script>
+        $(function () {
+            let url = new URL(window.location.href);
+            let masjid_id = url.searchParams.get("msid");
+            if (masjid_id){
+                $("#id_masjid").find("option").each(function () {
+                    if ($(this).val() === masjid_id){
+                        $("#id_masjid").val(masjid_id);
+                    }
+                })
+            }
+        })
+    </script>
+
+{% endblock %}
