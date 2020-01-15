@@ -1,4 +1,6 @@
-﻿.timing_table tbody tr td, .table tbody tr th{
+﻿@import url(materialize.css);
+
+.timing_table tbody tr td, .table tbody tr th{
   padding: 5px 0 5px 0!important;
   border-bottom: 0!important;
 }
@@ -6,11 +8,11 @@
   font-weight: bold;
   font-size: 24px!important;
 }
-
-
+input,textarea,select{
+  padding-left: 10px!important;
+}
 
 /* Navbar ====================================== */
-@import url(materialize.css);
 .navbar {
   font-family: "Roboto", sans-serif;
   -webkit-border-radius: 0;

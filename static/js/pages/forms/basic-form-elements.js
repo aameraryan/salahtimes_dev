@@ -17,7 +17,8 @@ $(function () {
     });
 
     $('.timepicker').bootstrapMaterialDatePicker({
-        format: 'HH:mm',
+        format: 'hh:mm A',
+        shortTime: true,
         clearButton: true,
         date: false
     });

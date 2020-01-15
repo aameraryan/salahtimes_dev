@@ -11,62 +11,60 @@
 
 {% block content %}
 
-
     <section class="content">
         <div>
-            <div class="block-header">
-                <h2 style="color: green!important;font-size: 15px"><i class="material-icons" style="font-size: 15px">plus</i> <b>ADD NEW MASJID ENTRY</b></h2>
+            <div class="card" style="padding: 0!important;">
+                <div class="header">
+                    <h2 style="color: green!important;font-size: 15px"><i class="material-icons" style="font-size: 16px;margin-top: 4px">add</i> <b> ADD NEW MASJID ENTRY</b></h2>
+                </div>
+                <div class="body bg-success" style="padding: 20px 0!important;">
+                    <div class="container-fluid">
+                        <form method="post">
+                            {% csrf_token %}
 
-            </div>
-            <div class="clearfix"></div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    {{ form.name|attr:"placeholder:Enter Masjid Name"|as_crispy_field }}
+                                </div>
+                                <div class="col-lg-6">
+                                    {{ form.area|as_crispy_field }}
+                                </div>
+                            </div>
 
-            <div class="row clearfix container-fluid">
-                <form method="post">
-                    {% csrf_token %}
+                            {{ form.address|attr:"placeholder:Enter masjid address (optional)"|attr:"rows: 4"|as_crispy_field }}
 
-                    <div class="row">
-                        <div class="col-lg-6">
-                            {{ form.name|attr:"placeholder:  Enter Masjid Name"|as_crispy_field }}
-                        </div>
-                        <div class="col-lg-6">
-                            {{ form.area|as_crispy_field }}
-                        </div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    {{ form.fajar|attr:"placeholder:05:00 AM"|add_class:"timepicker"|as_crispy_field }}
+                                </div>
+                                <div class="col-lg-6">
+                                    {{ form.zuhar|attr:"placeholder:01:00 PM"|add_class:"timepicker"|as_crispy_field }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    {{ form.asar|attr:"placeholder:05:00 PM"|add_class:"timepicker"|as_crispy_field }}
+                                </div>
+                                <div class="col-lg-6">
+                                    {{ form.maghrib|attr:"placeholder:07:00 PM"|add_class:"timepicker"|as_crispy_field }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    {{ form.isha|attr:"placeholder:09:00 PM"|add_class:"timepicker"|as_crispy_field }}
+                                </div>
+                                <div class="col-lg-6">
+                                    {{ form.juma|attr:"placeholder:01:30 PM"|add_class:"timepicker"|add_class:"timepicker"|as_crispy_field }}
+                                </div>
+                            </div>
+                            <button type="submit" class="btn bg-green">ADD ENTRY</button>
+                        </form>
                     </div>
-
-                    {{ form.address|attr:"placeholder:  Enter masjid address (optional)"|attr:"rows: 4"|as_crispy_field }}
-
-                    <div class="row">
-                        <div class="col-lg-6">
-                            {{ form.fajar|attr:"placeholder:  05:00"|add_class:"timepicker"|as_crispy_field }}
-                        </div>
-                        <div class="col-lg-6">
-                            {{ form.zuhar|attr:"placeholder:  13:00"|add_class:"timepicker"|as_crispy_field }}
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-6">
-                            {{ form.asar|attr:"placeholder:  17:00"|add_class:"timepicker"|as_crispy_field }}
-                        </div>
-                        <div class="col-lg-6">
-                            {{ form.maghrib|attr:"placeholder:  19:00"|add_class:"timepicker"|as_crispy_field }}
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-6">
-                            {{ form.isha|attr:"placeholder:  21:00"|add_class:"timepicker"|as_crispy_field }}
-                        </div>
-                        <div class="col-lg-6">
-                            {{ form.juma|attr:"placeholder:  14:00"|add_class:"timepicker"|add_class:"timepicker"|as_crispy_field }}
-                        </div>
-                    </div>
-                    <button type="submit" class="btn bg-green">ADD ENTRY</button>
-                </form>
+                </div>
             </div>
         <br><br><br>
-
         </div>
     </section>
-
 
 {% endblock %}
 

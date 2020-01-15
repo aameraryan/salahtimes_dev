@@ -1,8 +1,8 @@
 from django import forms
-from .models import TimeSuggestion
+from .models import Masjid
 
 
-class TimeSuggestionAddForm(forms.ModelForm):
+class MasjidCreateForm(forms.ModelForm):
 
     fajar = forms.TimeField(input_formats=["%I:%M %p"])
     zuhar = forms.TimeField(input_formats=["%I:%M %p"])
@@ -12,9 +12,5 @@ class TimeSuggestionAddForm(forms.ModelForm):
     juma = forms.TimeField(input_formats=["%I:%M %p"])
 
     class Meta:
-        model = TimeSuggestion
-        fields = ("masjid", "fajar", "zuhar", "asar", "maghrib", "isha", "juma")
-        labels = {
-            "user_name": "your name",
-            "user_phone": "your phone"
-        }
+        model = Masjid
+        fields = ("name", "area", "address", "fajar", "zuhar", "asar", "maghrib", "isha", "juma")

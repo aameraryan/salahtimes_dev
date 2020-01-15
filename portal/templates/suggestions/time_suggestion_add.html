@@ -14,14 +14,12 @@
 
     <section class="content">
         <div>
-            <div class="block-header">
-                <h2 style="color: green!important;font-size: 15px"><i class="material-icons" style="font-size: 15px">done_outline</i> <b>SUGGEST NEW TIMINGS FOR "{{ masjid.name|upper }}"</b></h2>
-            </div>
-            <div class="clearfix"></div>
-            <div class="row clearfix container-fluid">
-                <div class="text-info" style="vertical-align: center">
-                    <h5 style="font-weight: 400">Please enter Namaz times only that you know. leave others blank.</h5>
+            <div class="card" style="padding: 0!important;">
+                <div class="header">
+                    <h2 style="color: green!important;font-size: 15px"><i class="material-icons" style="font-size: 15px">pan_tool</i> <b> SUGGEST NEW TIMINGS FOR "{{ masjid.name|upper }}"</b></h2>
                 </div>
+                <div class="body bg-success" style="padding: 20px 0!important;">
+                    <div class="container-fluid">
                 <form method="post">
                     {% csrf_token %}
                     {{ form.masjid|as_crispy_field }}
@@ -50,11 +48,12 @@
                             {{ form.juma|attr:"id:juma"|as_crispy_field }}
                         </div>
                     </div>
-                    <button type="submit" class="btn bg-green">ADD ENTRY</button>
+                    <button type="submit" class="btn bg-green">ADD SUGGESTION</button>
                 </form>
             </div>
+                </div>
+            </div>
         <br><br><br>
-
         </div>
     </section>
 
@@ -70,42 +69,42 @@
     <script>
         $(function () {
             $('#fajar').bootstrapMaterialDatePicker({
-                format: 'HH:mm A',
+                format: 'hh:mm A',
                 shortTime: true,
                 clearButton: true,
                 date: false,
                 currentDate: "{{ masjid.fajar|date:'h:i A'}}",
             });
             $('#zuhar').bootstrapMaterialDatePicker({
-                format: 'HH:mm A',
+                format: 'hh:mm A',
                 shortTime: true,
                 clearButton: true,
                 date: false,
                 currentDate: "{{ masjid.zuhar|date:'h:i A'}}",
             });
             $('#asar').bootstrapMaterialDatePicker({
-                format: 'HH:mm A',
+                format: 'hh:mm A',
                 shortTime: true,
                 clearButton: true,
                 date: false,
                 currentDate: "{{ masjid.asar|date:'h:i A'}}",
             });
             $('#maghrib').bootstrapMaterialDatePicker({
-                format: 'HH:mm A',
+                format: 'hh:mm A',
                 shortTime: true,
                 clearButton: true,
                 date: false,
                 currentDate: "{{ masjid.maghrib|date:'h:i A'}}",
             });
             $('#isha').bootstrapMaterialDatePicker({
-                format: 'HH:mm A',
+                format: 'hh:mm A',
                 shortTime: true,
                 clearButton: true,
                 date: false,
                 currentDate: "{{ masjid.isha|date:'h:i A'}}",
             });
             $('#juma').bootstrapMaterialDatePicker({
-                format: 'HH:mm A',
+                format: 'hh:mm A',
                 shortTime: true,
                 clearButton: true,
                 date: false,
