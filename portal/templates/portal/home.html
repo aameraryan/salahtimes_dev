@@ -37,7 +37,12 @@
                 </div>
             </div>
             <br>
-            <a href="{% url "masjids:create" %}"><u>Add New Masjid +</u></a>
+            <a href="{% url "masjids:create" %}">
+                <button type="button" class="btn btn-success waves-effect">
+                    <i class="material-icons">add</i>
+                    <span>ADD NEW MASJID</span>
+                </button>
+            </a>
             <br><br>
             <div class="clearfix"></div>
             <!-- Basic Example -->
@@ -46,45 +51,50 @@
                     {% for masjid in masajid %}
 
                         <div class="panel masjid randomColor">
-                                    <span class="masjid_text" style="display: none">
-                                        {{ masjid.name }} {{ masjid.get_address_display }}
-                                    </span>
-                                            <div class="panel-heading" role="tab" id="masjidHeading_{{ forloop.counter }}">
-                                                <h4 class="panel-title ">
-                                                    <a role="button" data-toggle="collapse" data-parent="#accordion_1" href="#masjid_{{ forloop.counter }}" aria-expanded="false" aria-controls="masjid_{{ forloop.counter }}">
-                                                    {{ masjid.name }}<br><small style="height: 20px;color: whitesmoke">{{ masjid.get_address_display }}</small>
-                                                    </a>
-                                                </h4>
-
-                                            </div>
-                                            <div style="padding: 10px!important;" id="masjid_{{ forloop.counter }}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="masjidHeading_{{ forloop.counter }}">
-                                                <table class="table timing_table">
-                                                        <tr>
-                                                            <th>Fajar</th>
-                                                            <td>{{ masjid.fajar|date:"g:i A" }}</td>
-                                                            <th>Zuhar</th>
-                                                            <td>{{ masjid.zuhar|date:"g:i A" }}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th>Asar</th>
-                                                            <td>{{ masjid.asar|date:"g:i A" }}</td>
-                                                            <th>Maghrib</th>
-                                                            <td>{{ masjid.maghrib|date:"g:i A" }}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th>Isha</th>
-                                                            <td>{{ masjid.isha|date:"g:i A" }}</td>
-                                                            <th>Juma</th>
-                                                            <td>{{ masjid.juma|date:"g:i A" }}</td>
-                                                        </tr>
-                                                    </table>
-                                                <br>
-                                                <span>Times has changed ?
-                                                    <a href="{% url "suggestions:time_suggestion_add" %}?msid={{ masjid.id }}"><u>Suggest new times</u></a>
-                                                </span>
-
-                                            </div>
-                                        </div>
+                            <span class="masjid_text" style="display: none">
+                                {{ masjid.name }} {{ masjid.get_address_display }}
+                            </span>
+                            <div class="panel-heading" role="tab" id="masjidHeading_{{ forloop.counter }}">
+                                <h4 class="panel-title">
+                                    <a role="button" data-toggle="collapse" data-parent="#accordion_1" href="#masjid_{{ forloop.counter }}" aria-expanded="false" aria-controls="masjid_{{ forloop.counter }}">
+                                    {{ masjid.name }}<br><small style="height: 20px;color: whitesmoke">{{ masjid.get_address_display }}</small>
+                                    </a>
+                                </h4>
+                            </div>
+                            <div style="padding: 10px!important;" id="masjid_{{ forloop.counter }}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="masjidHeading_{{ forloop.counter }}">
+                                <table class="table timing_table">
+                                        <tr>
+                                            <th>Fajar</th>
+                                            <td>{{ masjid.fajar|date:"g:i A" }}</td>
+                                            <th>Zuhar</th>
+                                            <td>{{ masjid.zuhar|date:"g:i A" }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Asar</th>
+                                            <td>{{ masjid.asar|date:"g:i A" }}</td>
+                                            <th>Maghrib</th>
+                                            <td>{{ masjid.maghrib|date:"g:i A" }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Isha</th>
+                                            <td>{{ masjid.isha|date:"g:i A" }}</td>
+                                            <th>Juma</th>
+                                            <td>{{ masjid.juma|date:"g:i A" }}</td>
+                                        </tr>
+                                    </table>
+                                <br>
+                                <span>
+                                    Last updated : <span class="font-bold" style="color: #4CAF50">{{ masjid.get_last_updated_text }}</span>
+                                </span>
+                                <br>
+                                <a href="{% url "suggestions:time_suggestion_add" %}?msid={{ masjid.id }}">
+                                    <button type="button" class="btn btn-small btn-success waves-effect">
+                                        <i class="material-icons">edit</i>
+                                        <span>suggest new times</span>
+                                    </button>
+                                </a>
+                            </div>
+                        </div>
 
                     {% endfor %}
                 </div>
