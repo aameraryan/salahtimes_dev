@@ -1,5 +1,5 @@
 from django.contrib import messages
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
 from masjids.models import Masjid
@@ -15,6 +15,8 @@ class TimeSuggestionAddView(CreateView):
     success_url = reverse_lazy("portal:home")
 
     def form_valid(self, form):
+        # masjid = get_object_or_404(Masjid, id=form.cleaned_data['masjid'])
+        print(form.cleaned_data, "-"*100)
         messages.success(self.request, "Thanks! Suggestion added successfully, We will look on it.")
         return super().form_valid(form)
 
